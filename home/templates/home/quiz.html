@@ -1,0 +1,91 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .quiz-form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .quiz-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        fieldset {
+            border: none;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        label {
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post" class="quiz-form">
+    {% csrf_token %}
+    <fieldset>
+    {% if questions_list %}
+    <ul>
+        {% for q in questions_list %}
+        <li>{{q.question}}</li>
+        <ul>
+            {% for choice in q.choice_set.all %}
+            <input type="radio" name="choice{{ q.id }}" id="choice {{ choice.id }}" value="{{choice.id}}">
+            <label for="choice{{ choice.id }}">{{ choice.choice_text }}</label>
+            <br>
+            {% endfor %}
+        </ul>
+        <br>
+        {% endfor %}
+    </ul>
+    
+    {% else %}
+    <p>No questions available</p>
+    {% endif %}
+    
+    </fieldset>
+    <input type="submit" value="Submit Quiz">
+    </form>
+</body>
