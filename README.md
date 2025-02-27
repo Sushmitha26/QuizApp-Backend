@@ -55,3 +55,27 @@ Parameters:
 question_id: The ID of the question to delete.
 
 (Temporarily disabled CSRF for testing purposes)
+
+**How to run in local?**
+<br />
+**1. Clone the repository:**
+git clone https://github.com/Sushmitha26/QuizApp-Backend.git
+
+**2. Navigate to the project directory:**
+cd QuizApp-Backend
+
+**3. Install dependencies:**
+pip install
+
+**4. Apply migrations:**
+python manage.py makemigrations
+python manage.py migrate
+
+**6. Create a superuser (for admin access):**
+python manage.py createsuperuser
+
+**7. Start the development server:**
+python manage.py runserver
+
+8. Visit http://localhost:8000/home to access the app.
+
